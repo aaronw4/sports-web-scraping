@@ -10,7 +10,6 @@ requests = "*"
 beautifulsoup4 = "*"
 pandas = "*"
 jupyterlab = "*"
-numpy = "*"
 
 [requires]
 python_version = "3.8"
