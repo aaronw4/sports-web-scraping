@@ -17,8 +17,10 @@ soup2 = BeautifulSoup(game_data.text, 'lxml')
 section = soup2.find('section', class_='container-2-2cB')
 date = section.find('label').text
 
+game_period = soup2.find_all('div', class_='container-2fbfV')
+
 #full game numbers
-full_game = soup2.find('div', class_='container-2fbfV')
+full_game = game_period[0]
 
 teams = full_game.find_all('span', class_='participantBox-3ar9Y')
 team1 = teams[0].text
@@ -35,9 +37,24 @@ over_under = lines[12].text[:-1]
 over_odds = lines[13].text
 under_odds = lines[15].text
 
+#first half numbers
+first_half = game_period[1]
+
+first_half_lines = first_half.find_all('span', class_='opener')
+first_half_team1_spread = first_half_lines[2].text
+first_half_team1_spread_odds = first_half_lines[3].text
+first_half_team2_spread = first_half_lines[4].text
+first_half_team2_spread_odds = first_half_lines[5].text
+first_half_team1_moneyline = first_half_lines[8].text
+first_half_team2_moneyline = first_half_lines[9].text
+first_half_over_under = first_half_lines[12].text
+first_half_over_odds = first_half_lines[13].text
+first_half_under_odds = first_half_lines[15].text
+
+
 print(date)
-print(team1, " ", team1_spread, " ", team1_spread_odds)
-print(team1_moneyline)
-print(team2, " ", team2_spread, " ", team2_spread_odds)
-print(team2_moneyline)
-print(over_under, " ", over_odds, " ", under_odds)
+print(team1, " ", first_half_team1_spread, " ", first_half_team1_spread_odds)
+print(first_half_team1_moneyline)
+print(team2, " ", first_half_team2_spread, " ", first_half_team2_spread_odds)
+print(first_half_team2_moneyline)
+print(first_half_over_under, " ", first_half_over_odds, " ", first_half_under_odds)
