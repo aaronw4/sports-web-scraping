@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 ADDRESS = 'https://www.sportsbookreview.com'
 EXTENSION = '/betting-odds/college-football'
 ADDRESS_LIST = []
+ODDS = {}
 
 #builds a list of all game links
 html_data = requests.get(ADDRESS + EXTENSION)
@@ -21,8 +22,11 @@ game_data = requests.get(
 
 soup2 = BeautifulSoup(game_data.text, 'lxml')
 
+game_odds = {}
+
 section = soup2.find('section', class_='container-2-2cB')
 date = section.find('label').text
+game_odds['date'] = date
 
 game_period = soup2.find_all('div', class_='container-2fbfV')
 
@@ -32,6 +36,8 @@ full_game = game_period[0]
 teams = full_game.find_all('span', class_='participantBox-3ar9Y')
 team1 = teams[0].text
 team2 = teams[1].text
+teams = {'away': team1, 'home': team2}
+game_odds['teams'] = teams
 
 lines = full_game.find_all('span', class_='opener')
 team1_spread = lines[0].text
@@ -46,6 +52,25 @@ over_under = lines[6].text
 over_under = over_under.replace('\u00BD', '.5')
 over_odds = lines[7].text
 under_odds = lines[9].text
+
+full_game = {
+    'spread': {
+        'away_spread': team1_spread,
+        'away_odds': team1_spread_odds,
+        'home_spread': team2_spread,
+        'home_odds': team2_spread_odds
+    },
+    'moneyline': {
+        'away': team1_moneyline,
+        'home': team2_moneyline
+    },
+    'over_under': {
+        'total': over_under,
+        'over': over_odds,
+        'under': under_odds
+    }
+}
+game_odds['full_game'] = full_game
 
 #first half numbers
 first_half = game_period[1]
@@ -64,10 +89,23 @@ first_half_over_under = first_half_over_under.replace('\u00BD', '.5')
 first_half_over_odds = first_half_lines[7].text
 first_half_under_odds = first_half_lines[9].text
 
+first_half = {
+    'spread': {
+        'away_spread': first_half_team1_spread,
+        'away_odds': first_half_team1_spread_odds,
+        'home_spread': first_half_team2_spread,
+        'home_odds': first_half_team2_spread_odds
+    },
+    'moneyline': {
+        'away': first_half_team1_moneyline,
+        'home': first_half_team2_moneyline
+    },
+    'over_under': {
+        'total': first_half_over_under,
+        'over': first_half_over_odds,
+        'under': first_half_under_odds
+    }
+}
+game_odds['first_half'] = first_half
 
-print(date)
-print(team1, " ", team1_spread, " ", team1_spread_odds)
-print(team1_moneyline)
-print(team2, " ", team2_spread, " ", team2_spread_odds)
-print(team2_moneyline)
-print(over_under, " ", over_odds, " ", under_odds)
+print(game_odds)
