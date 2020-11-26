@@ -1,4 +1,5 @@
 import requests
+import json
 from bs4 import BeautifulSoup
 
 ADDRESS = 'https://www.sportsbookreview.com'
@@ -125,4 +126,5 @@ for i in range(0, len(ADDRESS_LIST), 2):
     ODDS[COUNT] = game_odds
     COUNT += 1
 
-print(ODDS)
+with open('odds.json', 'w') as data:
+    json.dump(ODDS, data)
