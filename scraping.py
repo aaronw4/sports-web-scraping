@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 ADDRESS = 'https://www.sportsbookreview.com'
 EXTENSION = '/betting-odds/college-football'
 ADDRESS_LIST = []
-ODDS = {}
+ODDS = []
 DATE = 'November 27'
 REACHED = False
 COUNT = 0
@@ -123,8 +123,8 @@ for i in range(0, len(ADDRESS_LIST), 2):
     }
     game_odds['first_half'] = first_half
 
-    ODDS[COUNT] = game_odds
+    ODDS.append(game_odds)
     COUNT += 1
 
-with open('odds.json', 'w') as data:
+with open('./sportsbook/src/odds.json', 'w') as data:
     json.dump(ODDS, data)
