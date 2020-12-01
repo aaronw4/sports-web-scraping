@@ -1,6 +1,13 @@
 .App {
   text-align: center;
 }
+.form{
+  margin: 50px 0;
+}
+.label, .select, .submit {
+  margin-right: 10px;
+  font-size: 18px;
+}
 .gameInfo {
   display: flex;
   /* flex-direction: column; */
