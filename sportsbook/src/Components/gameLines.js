@@ -1,7 +1,7 @@
 import React from 'react';
 import {MidPoint} from './midPoint';
 
-const CollegeFootball = () => {
+const GameLines = () => {
     let data = require('../odds.json')
     console.log(data[0])    
 
@@ -114,4 +114,4 @@ const CollegeFootball = () => {
     )
 }
 
-export default CollegeFootball
+export default GameLines

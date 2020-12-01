@@ -1,10 +1,10 @@
 import './App.css';
-import CollegeFootball from './Components/collegeFootball';
+import GameLines from './Components/gameLines';
 
 function App() {
   return (
     <div className="App">
-      <CollegeFootball/>
+      <GameLines/>
     </div>
   );
 }
