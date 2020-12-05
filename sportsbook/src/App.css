@@ -8,6 +8,9 @@
   margin-right: 10px;
   font-size: 18px;
 }
+.gameBox {
+  margin-top: 100px;
+}
 .gameInfo {
   display: flex;
   /* flex-direction: column; */
@@ -28,10 +31,14 @@
 }
 .fgMidpoint {
   margin-left: 25px;
+  font-weight: bold;
+  color: yellow;
 }
 .fhOpening {
   margin-left: 25px;
 }
 .fhMidpoints {
   margin-left: 25px;
+  font-weight: bold;
+  color: yellow;
 }
