@@ -16,7 +16,7 @@ const GameLines = () => {
     return (
         <div>
             {data.map(game => (
-                <div>
+                <div className='gameBox'>
                     <h4>{game.date}</h4>
                     <div className='gameInfo'>
                         <div>
