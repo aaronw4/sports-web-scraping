@@ -1,12 +1,15 @@
+import sys
 import requests
 import json
 from bs4 import BeautifulSoup
 
 ADDRESS = 'https://www.sportsbookreview.com'
-EXTENSION = '/betting-odds/college-football'
+EXTENSION = '/betting-odds/nfl-football'
+DATE = 'December 08'
+# EXTENSION = sys.argv[1]
+# DATE = sys.argv[2]
 ADDRESS_LIST = []
 ODDS = []
-DATE = 'November 27'
 REACHED = False
 COUNT = 0
 
@@ -19,7 +22,7 @@ for links in soup.find_all('a', class_='gradientContainer-3iN6G'):
 #Loop through all links
 for i in range(0, len(ADDRESS_LIST), 2):
     USER_SETTINGS = 'user_settings=eyJkYXRhIjoie1wic2V0dGluZ3NcIjpbe1wiaWRcIjpcIjVhNGJhMjYzODI4MTg5NTNjMDkyZWZmMFwiLFwidmFsdWVcIjpcIlxcXCJ0aW1lXFxcIlwifSx7XCJpZFwiOlwiNWE0M2MxMWI4MjgxODk1M2MwOTJlZmU1XCIsXCJ2YWx1ZVwiOlwiXFxcIlVTL0Vhc3Rlcm5cXFwiXCJ9LHtcImlkXCI6XCI1YTQzYzBhZjgyODE4OTUzYzA5MmVmZTRcIixcInZhbHVlXCI6XCJcXFwiMjM4LTIwXFxcIlwifSx7XCJpZFwiOlwiNWE0M2JlOWQ4MjgxODk1M2MwOTJlZmUzXCIsXCJ2YWx1ZVwiOlwiXFxcInVzXFxcIlwifSx7XCJpZFwiOlwiNWE0M2JlNzA4MjgxODk1M2MwOTJlZmUyXCIsXCJ2YWx1ZVwiOlwiZmFsc2VcIn0se1wiaWRcIjpcIjVhNDNiZTQwODI4MTg5NTNjMDkyZWZlMVwiLFwidmFsdWVcIjpcInRydWVcIn0se1wiaWRcIjpcIjVhNDNiZGMxODI4MTg5NTNjMDkyZWZlMFwiLFwidmFsdWVcIjpcImZhbHNlXCJ9LHtcImlkXCI6XCI1YTQzYThjYTgyODE4OTUzYzA5MmVmZGFcIixcInZhbHVlXCI6XCJmYWxzZVwifSx7XCJpZFwiOlwiNWE0Mjg0OWM4MjgxODk1M2MwOTJlZmQ5XCIsXCJ2YWx1ZVwiOlwiXFxcInRydWVcXFwiXCJ9LHtcImlkXCI6XCI1YjBlYmNiMjVkMzQ0NjI4YTU0ZDRmZmFcIixcInZhbHVlXCI6XCJcXFwiY29tcGFjdFxcXCJcIn1dfSIsInR5cGUiOiJvYmplY3QifQ=='
-
+    
     game_data = requests.get(
         ADDRESS + ADDRESS_LIST[i],
         headers={"cookie" : USER_SETTINGS}
@@ -45,6 +48,7 @@ for i in range(0, len(ADDRESS_LIST), 2):
 
     #full game numbers
     full_game = game_period[0]
+
 
     teams = full_game.find_all('span', class_='participantBox-3ar9Y')
     team1 = teams[0].text
@@ -122,6 +126,9 @@ for i in range(0, len(ADDRESS_LIST), 2):
         }
     }
     game_odds['first_half'] = first_half
+
+    graph_address = ADDRESS_LIST[i][:-5] + "line-history/"
+    game_odds['graph_address'] = graph_address
 
     ODDS.append(game_odds)
     COUNT += 1
