@@ -26,19 +26,15 @@
 .row {
   margin-top: 90px;
 }
-.fgOpening {
+.fgOpening, .fhOpening {
   margin-left: 25px;
 }
-.fgMidpoint {
+.fgMidpoint, .fhMidpoints {
   margin-left: 25px;
   font-weight: bold;
   color: yellow;
 }
-.fhOpening {
-  margin-left: 25px;
-}
-.fhMidpoints {
-  margin-left: 25px;
-  font-weight: bold;
-  color: yellow;
+.iframe {
+  margin-left: 75px;
+  width: 600px;
 }
