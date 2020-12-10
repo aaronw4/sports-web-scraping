@@ -107,6 +107,10 @@ const GameLines = () => {
                                 {MidPoint(game.first_half.over_under.over, game.first_half.over_under.under)}
                             </p>
                         </div>
+                        <iframe 
+                            className='iframe'
+                            src={game.graph_address}
+                        />
                     </div>
                 </div>
             ))}
