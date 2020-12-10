@@ -127,7 +127,7 @@ for i in range(0, len(ADDRESS_LIST), 2):
     }
     game_odds['first_half'] = first_half
 
-    graph_address = ADDRESS_LIST[i][:-5] + "line-history/"
+    graph_address = ADDRESS + ADDRESS_LIST[i][:-5] + "line-history/"
     game_odds['graph_address'] = graph_address
 
     ODDS.append(game_odds)
