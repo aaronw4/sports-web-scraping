@@ -3,7 +3,6 @@ import {MidPoint} from './midPoint';
 
 const GameLines = () => {
     let data = require('../odds.json')
-    console.log(data[0])    
 
     function sign(value, otherValue) {
         if (Number(value) < Number(otherValue)) {
@@ -16,7 +15,7 @@ const GameLines = () => {
     return (
         <div>
             {data.map(game => (
-                <div className='gameBox'>
+                <div className='gameBox' key={game.teams.awa}>
                     <h4>{game.date}</h4>
                     <div className='gameInfo'>
                         <div>
@@ -110,6 +109,7 @@ const GameLines = () => {
                         <iframe 
                             className='iframe'
                             src={game.graph_address}
+                            title={game.graph_address}
                         />
                     </div>
                 </div>
