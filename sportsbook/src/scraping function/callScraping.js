@@ -3,7 +3,7 @@ function callPython() {
      
     var process = spawn('python', ["c:/Users/aaron/Git/sports-web-scraping/sportsbook/src/scraping function/scraping.py"]); 
   
-    process.stdout.on('data', function() { 
+    process.stdout.on('close', function() { 
         console.log('Scraping complete'); 
     }) 
 
