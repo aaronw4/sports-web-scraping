@@ -5,10 +5,10 @@ from bs4 import BeautifulSoup
 
 def scraping():
     ADDRESS = 'https://www.sportsbookreview.com'
-    EXTENSION = '/betting-odds/college-football'
-    DATE = 'December 11'
-    # EXTENSION = sys.argv[1]
-    # DATE = sys.argv[2]
+    # EXTENSION = '/betting-odds/nba-basketball'
+    # DATE = 'January 05'
+    EXTENSION = sys.argv[1]
+    DATE = sys.argv[2]
     ADDRESS_LIST = []
     ODDS = []
     REACHED = False
