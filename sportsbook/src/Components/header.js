@@ -9,6 +9,7 @@ const Header = () => {
     
     const [sport, setSport] = useState('/betting-odds/nfl-football');
     const [date, setDate] = useState(todayString);
+    const [data, setData] = useState([])
 
     function handleSport(e) {
         setSport(e.target.value)
@@ -17,15 +18,6 @@ const Header = () => {
     function handleDate(e) {
         setDate(e.target.value)
     }
-
-    function postData(input) {
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/reverse_pca.py",
-        //     data: { param: input },
-        //     success: postComplete
-        // });
-    }
     
     function postComplete(e) {
        e.preventDefault();
@@ -33,11 +25,15 @@ const Header = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(sport, date)
+        fetch('http://localhost:5000/scraping?sport='+sport+'&date='+date)
+            .then(res => setData(res.data))
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
     }
 
     return (
         <div>
+            {console.log(date)}
             <form onSubmit={handleSubmit} className='form'>
                 <label className='label'>Select sport and date:</label>
                 <select name='sport' onChange={handleSport} className='select'>
@@ -46,6 +42,9 @@ const Header = () => {
                     </option>
                     <option value='/betting-odds/college-football'>
                         NCAA FB
+                    </option>
+                    <option value='/betting-odds/nba-basketball'>
+                        NBA
                     </option>
                 </select>
                 <select date='date' onChange={handleDate} className='select'>
