@@ -1,7 +1,11 @@
-function callPython() { 
+function callPython(sport, date) { 
     var spawn = require("child_process").spawn; 
      
-    var process = spawn('python', ["c:/Users/aaron/Git/sports-web-scraping/sportsbook/src/scraping function/scraping.py"]); 
+    var process = spawn('python', [
+        "c:/Users/aaron/Git/sports-web-scraping/sportsbook/src/scraping function/scraping.py",
+        sport,
+        date
+    ]); 
   
     process.stdout.on('close', function() { 
         console.log('Scraping complete'); 
@@ -12,4 +16,4 @@ function callPython() {
     }) 
 } 
 
-callPython()
+callPython('/betting-odds/nba-basketball', 'January 05')
